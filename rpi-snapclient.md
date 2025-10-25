@@ -1,13 +1,19 @@
-# Raspberry Pi Headless Snapclient install
+# Headless Snapclient + local bluetooth receiver
 
-## Snapclient + local bluetooth receiver
+## Debian install instructions
 
-1. Install 64bit raspian list (terminal only)
-2. Copy the latest snapclient armhf release url from here (current version is trixie) <https://github.com/badaix/snapcast/releases>
-3. From user folder: wget copied-url
-4. apt install snapclient_0.26.0-1_armhf.deb
-5. nano /etc/default/snapclient
-6. START_SNAPCLIENT=true
+<https://whynot.guide/posts/howtos/multiroom-media/>
+
+- Install 64bit raspian lite (terminal only), or debian server in a vm...
+- ssh-keygen (if needed)
+- ssh-copy-id chris@hostname
+- ssh in
+- sudo apt update -y && sudo apt upgrade -y
+- Copy the latest snapclient release url from here. armhf for raspi, amd64 for intel (current version is trixie) <https://github.com/badaix/snapcast/releases>
+- From user folder: wget copied-url
+- sudo apt install ./snapclient_0.26.0-1_armhf.deb
+- sudo nano /etc/default/snapclient
+- START_SNAPCLIENT=true
 SNAPCLIENT_OPTS="--host 192.168.x.x"
-7. systemctl enable snapclient
-8. systemctl start snapclient
+- sudo systemctl enable snapclient
+- sudo systemctl start snapclient
