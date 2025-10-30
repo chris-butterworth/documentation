@@ -31,3 +31,5 @@ echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
 - `sudo update-grub`
 
 Done! Touchscreen etc should work
+
+To do - [post install steps](https://github.com/linux-surface/linux-surface/wiki/Installation-and-Setup#post-installation)
