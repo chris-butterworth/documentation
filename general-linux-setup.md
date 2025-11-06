@@ -31,9 +31,14 @@ Description=Auto sync git repo %i
 [Service]
 Type=oneshot
 WorkingDirectory=%h/repos/%i
+ExecStartPre=/usr/bin/git add -A
+ExecStartPre=/usr/bin/git commit --allow-empty-message -m '' || true
 ExecStart=/usr/bin/git pull --rebase
+
 ```
+
 `nano ~/.config/systemd/user/git-sync@.timer`
+
 ``` text
 [Unit]
 Description=Run git sync every 30 minutes for %i
