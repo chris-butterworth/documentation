@@ -16,7 +16,42 @@ steam also requires the ability to install 32bit software
 
 `sudo apt install steam-installer`
 
-## To be scripted in Ansible
+## Other apps
+- [sleek](https://github.com/ransome1/sleek/releases) (todo.txt)
+- obs studio
+- apostrophe markdown editor
+
+## repo auto sync
+`mkdir -p ~/.config/systemd/user`
+`nano ~/.config/systemd/user/git-sync@.service`
+``` text
+[Unit]
+Description=Auto sync git repo %i
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/repos/%i
+ExecStart=/usr/bin/git pull --rebase
+```
+`nano ~/.config/systemd/user/git-sync@.timer`
+``` text
+[Unit]
+Description=Run git sync every 30 minutes for %i
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+Unit=git-sync@%i.service
+
+[Install]
+WantedBy=timers.target
+```
+`systemctl --user daemon-reload`
+`systemctl --user enable --now git-sync@notebook.timer`
+`systemctl --user enable --now git-sync@documentation.timer`
+`systemctl --user list-timers`
+
+## ansible to do
 
 - install git
 - git config --global user.email "............"
