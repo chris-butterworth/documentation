@@ -2,6 +2,54 @@
 
 ## Debian install instructions
 
+### Snapserver install
+
+#### Snapserver
+`wget https://github.com/badaix/snapcast/releases/download/v0.34.0/snapserver_0.34.0-1_amd64_trixie.deb`
+
+`sudo apt install ~/snapserver_0.34.0-1_amd64_trixie.deb`
+
+`sudo systemctl enable snapserver`
+
+`sudo nano /etc/snapserver.conf`
+
+#### Librespot (spotify connect)
+
+Install Rust
+`sudo apt install curl`
+
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+
+`rustup update` (not found for me, skipped)
+
+`apt install git build-essential libasound2-dev libssl-dev pkg-config cargo`
+
+`git clone https://github.com/librespot-org/librespot.git`
+
+`cd librespot`
+
+`cargo build --release`
+
+`cp target/release/librespot /usr/bin/`
+
+todo - Add rows to config
+
+`systemctl restart snapserver`
+
+add to path
+`sudo install -m 755 target/release/librespot /usr/local/bin/` 
+
+
+To update librespot 
+``` bash
+cd ~/librespot
+git fetch origin
+git reset --hard origin/master
+cargo build --release
+sudo cp target/release/librespot /usr/local/bin/librespot
+systemctl restart snapserver
+```
+
 ### Snapclient install
 
 <https://whynot.guide/posts/howtos/multiroom-media/>
