@@ -23,7 +23,9 @@ steam also requires the ability to install 32bit software
 
 ## repo auto sync
 `mkdir -p ~/.config/systemd/user`
+
 `nano ~/.config/systemd/user/git-sync@.service`
+
 ``` text
 [Unit]
 Description=Auto sync git repo %i
@@ -52,8 +54,11 @@ Unit=git-sync@%i.service
 WantedBy=timers.target
 ```
 `systemctl --user daemon-reload`
+
 `systemctl --user enable --now git-sync@notebook.timer`
+
 `systemctl --user enable --now git-sync@documentation.timer`
+
 `systemctl --user list-timers`
 
 ## ansible to do
