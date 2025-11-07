@@ -22,9 +22,10 @@ steam also requires the ability to install 32bit software
 - apostrophe markdown editor
 
 ## repo auto sync
-`mkdir -p ~/.config/systemd/user`
-
-`nano ~/.config/systemd/user/git-sync@.service`
+``` bash
+mkdir -p ~/.config/systemd/user
+nano ~/.config/systemd/user/git-sync@.service
+```
 
 ``` text
 [Unit]
@@ -33,10 +34,15 @@ Description=Auto sync git repo %i
 [Service]
 Type=oneshot
 WorkingDirectory=%h/repos/%i
-ExecStartPre=/usr/bin/git add -A
-ExecStartPre=/usr/bin/git commit --allow-empty-message -m '' || true
-ExecStart=/usr/bin/git pull --rebase
-
+ExecStart=/bin/bash -c "\
+  set -e; \
+  git fetch origin; \
+  if ! git diff --quiet; then \
+    git add -A; \
+    git commit -m \"Auto-sync: $(date +%Y-%m-%d %H:%M) (<machine-name>)\" || true; \
+  fi; \
+  git pull --rebase --autostash; \
+  git push"
 ```
 
 `nano ~/.config/systemd/user/git-sync@.timer`
@@ -53,13 +59,15 @@ Unit=git-sync@%i.service
 [Install]
 WantedBy=timers.target
 ```
-`systemctl --user daemon-reload`
 
-`systemctl --user enable --now git-sync@notebook.timer`
+``` bash
+systemctl --user daemon-reload
+systemctl --user enable --now git-sync@notebook.timer
+systemctl --user enable --now git-sync@documentation.timer
+systemctl --user list-timers
+```
 
-`systemctl --user enable --now git-sync@documentation.timer`
-
-`systemctl --user list-timers`
+To see the logs `journalctl --user -u git-sync@notebook.service`
 
 ## ansible to do
 
