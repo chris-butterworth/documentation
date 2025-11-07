@@ -39,7 +39,7 @@ ExecStart=/bin/bash -c "\
   git fetch origin; \
   if ! git diff --quiet; then \
     git add -A; \
-    git commit -m \"Auto-sync: $(date +%Y-%m-%d %H:%M) (<machine-name>)\" || true; \
+    git commit -m \"Auto-sync: $(date -Iseconds)\" || true; \
   fi; \
   git pull --rebase --autostash; \
   git push"
