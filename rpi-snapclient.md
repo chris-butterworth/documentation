@@ -34,10 +34,12 @@ Install Rust
 
 todo - Add rows to config
 
-`systemctl restart snapserver`
 
 add to path
 `sudo install -m 755 target/release/librespot /usr/local/bin/` 
+
+
+`sudo systemctl restart snapserver`
 
 
 To update librespot 
