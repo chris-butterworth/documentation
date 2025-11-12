@@ -27,6 +27,13 @@ mkdir -p ~/.config/systemd/user
 nano ~/.config/systemd/user/git-sync@.service
 ```
 
+
+This script will auto resolve any conflicts by discarding the local. 
+
+It will always favour the remote. This is okay as long as:
+
+1. the repo is only used by one person
+2. that person doesn't edit the repo on 2 machines at once
 ``` text
 [Unit]
 Description=Auto sync git repo %i
@@ -36,13 +43,21 @@ Type=oneshot
 WorkingDirectory=%h/repos/%i
 ExecStart=/bin/bash -c "\
   set -e; \
+  branch=$(git rev-parse --abbrev-ref HEAD); \
   git fetch origin; \
   if ! git diff --quiet; then \
     git add -A; \
     git commit -m \"Auto-sync: $(date -Iseconds)\" || true; \
   fi; \
-  git pull --rebase --autostash; \
-  git push"
+  if ! git pull --rebase --autostash; then \
+    echo 'Conflict detected, auto-resolving...'; \
+    git checkout --theirs . || git checkout --ours .; \
+    git add .; \
+    git rebase --continue 2>/dev/null || git commit -m \"Auto-resolved sync conflict\"; \
+  fi; \
+  git checkout $branch 2>/dev/null || true; \
+  git push origin HEAD --progress"
+
 ```
 
 `nano ~/.config/systemd/user/git-sync@.timer`
