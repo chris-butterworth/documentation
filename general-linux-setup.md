@@ -53,7 +53,7 @@ Description=Run git sync every 30 minutes for %i
 
 [Timer]
 OnBootSec=5min
-OnUnitActiveSec=30min
+OnUnitActiveSec=5min
 Unit=git-sync@%i.service
 
 [Install]
