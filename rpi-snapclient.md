@@ -98,3 +98,13 @@ sudo usermod -aG adm,systemd-journal chris
 journalctl -u snapclient -f
 journalctl -u snapserver -f
 ```
+
+## minidsp cli control
+
+https://github.com/mrene/minidsp-rs/releases/tag/v0.1.12
+
+``` bash
+cd /home/downloads
+sudo wget https://github.com/mrene/minidsp-rs/releases/download/v0.1.12/minidsp_0.1.12-1_amd64.deb
+sudo apt install ./minidsp......
+```
