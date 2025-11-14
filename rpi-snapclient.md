@@ -86,3 +86,15 @@ Class = 0x41C
 ...  
 DiscoverableTimeout = 0  
 ```
+
+### Viewing logs
+
+If you can't see the logs and are getting a warning
+``` bash
+sudo usermod -aG adm,systemd-journal chris
+```
+
+``` bash
+journalctl -u snapclient -f
+journalctl -u snapserver -f
+```
