@@ -64,11 +64,11 @@ ExecStart=/bin/bash -c "\
 
 ``` text
 [Unit]
-Description=Run git sync every 30 minutes for %i
+Description=Run git sync every 1 minutes for %i
 
 [Timer]
-OnBootSec=5min
-OnUnitActiveSec=5min
+OnUnitActiveSec=1min
+Persistent=true
 Unit=git-sync@%i.service
 
 [Install]
