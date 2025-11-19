@@ -4,7 +4,41 @@
 
 ## Setup rsync backups with timeshift
 
-## Developer Environment
+## Godot Dev Environment
+
+install instructions from [chickensoft](https://chickensoft.games/docs/setup) and [godot](https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_basics.html)
+
+Install the latest dotnet
+```bash
+cd ~/Downloads
+wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+chmod +x ./dotnet-install.sh
+./dotnet-install.sh --version latest
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+```
+
+add the last two env variables to bashrc, to persist in reboot
+``` bash
+nano ~/bashrc
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+```
+
+get latest version number of godot from [here](https://www.nuget.org/packages/GodotSharp/) to use in the command below
+install godot using chickensoft's installer
+``` bash
+dotnet tool install --global Chickensoft.GodotEnv
+godotenv godot install 4.0.1
+```
+
+Install VS Code from their website
+
+In Godot's Editor → Editor Settings menu:
+    Set Dotnet -> Editor -> External Editor to Visual Studio Code.
+
+
+## Unity Dev Environment
 
 - VS Code is a .deb from their website
 
