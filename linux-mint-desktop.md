@@ -64,6 +64,7 @@ code --install-extension alfish.godot-files \
      --install-extension yzhang.markdown-all-in-one
 ```
 
+Follow config settings [here](https://chickensoft.games/docs/setup#-vscode-settings-for-godot-and-c)
 ## Unity Dev Environment
 
 - VS Code is a .deb from their website
