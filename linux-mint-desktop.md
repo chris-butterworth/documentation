@@ -18,11 +18,14 @@ export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 ```
 
-add the last two env variables to bashrc, to persist in reboot
+add the last two env variables to bashrc and to profile, to persist in reboot
 ``` bash
-nano ~/bashrc
+nano ~/.bashrc
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+nano ~/.profile
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH
 ```
 
 get latest version number of godot from [here](https://www.nuget.org/packages/GodotSharp/) to use in the command below
@@ -37,6 +40,29 @@ Install VS Code from their website
 In Godot's Editor → Editor Settings menu:
     Set Dotnet -> Editor -> External Editor to Visual Studio Code.
 
+``` bash
+code --install-extension alfish.godot-files \
+     --install-extension christian-kohler.path-intellisense \
+     --install-extension codezombiech.gitignore \
+     --install-extension DavidAnson.vscode-markdownlint \
+     --install-extension EditorConfig.EditorConfig \
+     --install-extension edwinhuish.better-comments-next \
+     --install-extension emeraldwalk.runonsave \
+     --install-extension fernandoescolar.vscode-solution-explorer \
+     --install-extension IBM.output-colorizer \
+     --install-extension josefpihrt-vscode.roslynator \
+     --install-extension ms-dotnettools.csharp \
+     --install-extension ms-dotnettools.vscode-dotnet-runtime \
+     --install-extension ms-dotnettools.csharp-dev-kit \
+     --install-extension geequlim.godot-tools \
+     --install-extension pflannery.vscode-versionlens \
+     --install-extension qcz.text-power-tools \
+     --install-extension selcukermaya.se-csproj-extensions \
+     --install-extension stkb.rewrap \
+     --install-extension streetsidesoftware.code-spell-checker \
+     --install-extension tintoy.msbuild-project-tools \
+     --install-extension yzhang.markdown-all-in-one
+```
 
 ## Unity Dev Environment
 
