@@ -52,27 +52,90 @@ sudo cp target/release/librespot /usr/local/bin/librespot
 systemctl restart snapserver
 ```
 
+### PulseAudio Systemd User Service
+
+This ensures PulseAudio is running at boot for the `chris` user, so Snapclient can connect without requiring a login.
+
+```bash
+mkdir -p ~/.config/systemd/user
+nano ~/.config/systemd/user/pulseaudio.service
+```
+
+``` text
+[Unit]
+Description=PulseAudio Sound System
+After=sound.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pulseaudio --daemonize=no
+Restart=always
+
+[Install]
+WantedBy=default.target
+```
+
+``` bash 
+systemctl --user daemon-reexec
+systemctl --user enable pulseaudio
+systemctl --user start pulseaudio
+
+# Check status
+systemctl --user status pulseaudio
+```
+
 ### Snapclient install
 
 <https://whynot.guide/posts/howtos/multiroom-media/>
 
-- Install 64bit raspian lite (terminal only), or debian server in a vm...
-- `ssh-keygen` (if needed)
-- `ssh-copy-id chris@hostname`
-- ssh in
-- `sudo apt update -y && sudo apt upgrade -y`
-- Copy the latest snapclient release url from here. armhf for raspi, amd64 for intel (current version is trixie) <https://github.com/badaix/snapcast/releases>
-- From user folder: `wget copied-url`
-- `sudo apt install ./snapclient_0.26.0-1_armhf.deb`
-- `sudo nano /etc/default/snapclient`
+- Install 64-bit Raspbian Lite (terminal only), or Debian server in a VM  
+``` bash
+ssh-keygen
+ssh-copy-id chris@hostname
+```
+
+SSH in
+
+``` bash
+sudo apt update -y && sudo apt upgrade -y
+```
+
+- Copy the latest Snapclient release URL from here (armhf for Raspberry Pi, amd64 for Intel; current version is trixie) <https://github.com/badaix/snapcast/releases>  
+- From user folder: `wget copied-url`  
+- `sudo apt install ./snapclient.... press tab`  
+
+**Systemd setup for Snapclient using PulseAudio:**
+
+Create a drop-in override to run as your user:
+
+```bash
+sudo systemctl edit snapclient
+```
 
 ```text
+[Service]
+User=chris
+Environment=DISPLAY=:0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStart=
+ExecStart=/usr/bin/snapclient --user tcp://192.168.178.163:1704 --player pulse
+Restart=on-failure
+```
+
+``` bash
+sudo systemctl daemon-reexec
+sudo systemctl enable snapclient
+sudo systemctl start snapclient
+sudo journalctl -u snapclient -f
+```
+
+**Or if using ALSA instead of PulseAudio**
+`sudo nano /etc/default/snapclient`
+
+``` text
 START_SNAPCLIENT=true
 SNAPCLIENT_OPTS="--host 192.168.x.x"
 ```
-
-- `sudo systemctl enable snapclient`
-- `sudo systemctl start snapclient`
 
 ### [incomplete] Local Bluetooth Receiver
 
