@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Snapcast Setup.md",
+                "file": "linux-mint-desktop.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Snapcast Setup"
+              "title": "linux-mint-desktop"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Snapcast Setup.md",
+                "file": "linux-mint-desktop.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Snapcast Setup"
+              "title": "Backlinks for linux-mint-desktop"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Snapcast Setup.md",
+                "file": "linux-mint-desktop.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Snapcast Setup"
+              "title": "Outgoing links from linux-mint-desktop"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Snapcast Setup.md",
+                "file": "linux-mint-desktop.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Snapcast Setup"
+              "title": "Outline of linux-mint-desktop"
             }
           }
         ]
@@ -183,17 +183,19 @@
       "bases:Create new base": false
     }
   },
-  "active": "661a56360d8eac15",
+  "active": "907966bc8928614c",
   "lastOpenFiles": [
-    "general-linux-setup.md",
-    "Untitled.base",
-    "2025-12-02.md",
     "multiroom-audio.png",
+    "2025-12-02.md",
+    "Snapcast Setup.md",
     "Untitled.canvas",
-    "batocera-configuration.md",
-    "README.md",
-    "linux-mint-desktop.md",
     "ha-restore.md",
-    "debian-kde-surface.md"
+    "general-linux-setup.md",
+    "docker-volume-restore.md",
+    "debian-kde-surface.md",
+    "batocera-configuration.md",
+    "Untitled.base",
+    "README.md",
+    "linux-mint-desktop.md"
   ]
 }
