@@ -11,14 +11,13 @@
             "id": "907966bc8928614c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "bases",
               "state": {
-                "file": "linux-mint-desktop.md",
-                "mode": "source",
-                "source": false
+                "file": "Untitled.base",
+                "viewName": "Table"
               },
-              "icon": "lucide-file",
-              "title": "linux-mint-desktop"
+              "icon": "lucide-table",
+              "title": "Untitled"
             }
           }
         ]
@@ -185,17 +184,17 @@
   },
   "active": "907966bc8928614c",
   "lastOpenFiles": [
+    "Untitled.canvas",
+    "Untitled.base",
+    "linux-mint-desktop.md",
     "multiroom-audio.png",
     "2025-12-02.md",
     "Snapcast Setup.md",
-    "Untitled.canvas",
     "ha-restore.md",
     "general-linux-setup.md",
     "docker-volume-restore.md",
     "debian-kde-surface.md",
     "batocera-configuration.md",
-    "Untitled.base",
-    "README.md",
-    "linux-mint-desktop.md"
+    "README.md"
   ]
 }
