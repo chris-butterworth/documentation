@@ -83,7 +83,7 @@ systemctl --user start pulseaudio
 # Check status
 systemctl --user status pulseaudio
 
-
+sudo loginctl enable-linger chris
 ```
 
 ### Snapclient install
