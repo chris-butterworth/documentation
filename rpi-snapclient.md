@@ -82,6 +82,8 @@ systemctl --user start pulseaudio
 
 # Check status
 systemctl --user status pulseaudio
+
+
 ```
 
 ### Snapclient install
