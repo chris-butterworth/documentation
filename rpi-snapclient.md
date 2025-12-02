@@ -130,11 +130,14 @@ sudo journalctl -u snapclient -f
 ```
 
 **Or if using ALSA instead of PulseAudio**
-`sudo nano /etc/default/snapclient`
+`sudo nano /etc/default/snapclientkiljjjjjjj`
 
 ``` text
 START_SNAPCLIENT=true
-SNAPCLIENT_OPTS="--host 192.168.x.x"
+SNAPCLIENT_OPTS=tcp://127.0.0.1:1704
+
+// or for 96k, will resample automatically
+SNAPCLIENT_OPTS="tcp://127.0.0.1:1704 --sampleformat 96000:24:*"
 ```
 
 ### [incomplete] Local Bluetooth Receiver
