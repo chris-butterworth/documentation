@@ -10,7 +10,7 @@ apparently pcm0p/info will probe the actual device, where as pcm0p/sub0/status i
 #!/bin/bash
 # /usr/local/bin/snapclient-minidisp.sh
 
-if cat /proc/asound/card0/pcm0p/info | grep -q "subdevices_avail: 0" && minidsp | grep "Toslink";
+	if cat /proc/asound/card0/pcm0p/info | grep -q "subdevices_avail: 0" && minidsp | grep "Toslink";
     then
         minidsp source usb
 elif cat /proc/asound/card0/pcm0p/info | grep -q "subdevices_avail: 1" && minidsp | grep "Usb";
