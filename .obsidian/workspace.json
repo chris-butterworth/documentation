@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "multiroom-audio/hifi-input-switcher-systemd.md",
+                "file": "multiroom-audio/Snapcast Setup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "hifi-input-switcher-systemd"
+              "title": "Snapcast Setup"
             }
           }
         ],
@@ -200,6 +200,8 @@
   },
   "active": "bc4ae94213db9ea7",
   "lastOpenFiles": [
+    "multiroom-audio/multiroom-audio.png",
+    "multiroom-audio/hifi-input-switcher-systemd.md",
     "tools-and-configs/repo-auto-sync.md",
     "tools-and-configs",
     "restore-scripts/homeassistant-restore.md",
@@ -213,9 +215,7 @@
     "restore-scripts/debian-kde-surface.md",
     "restore-scripts/linux-mint-desktop.md",
     "restore-scripts",
-    "multiroom-audio/multiroom-audio.png",
     "multiroom-audio/Snapcast Setup.md",
-    "multiroom-audio/hifi-input-switcher-systemd.md",
     "Snapcast Setup.md",
     "multiroom-audio/multiroom-audio.drawio",
     "multiroom-audio",
