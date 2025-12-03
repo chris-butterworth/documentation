@@ -132,7 +132,10 @@ sudo journalctl -u snapclient -f
 ```
 
 **Or if using ALSA instead of PulseAudio**
-`sudo nano /etc/default/snapclient`
+``` bash
+sudo nano /etc/default/snapclient
+```
+
 
 ``` text
 START_SNAPCLIENT=true
