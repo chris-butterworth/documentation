@@ -4,6 +4,8 @@
 sudo nano /usr/local/bin/minidspInput.sh
 ```
 
+old script, hit alsa/minidsp too often and cause the usb device to get overloaded overnight, and needed powercycling in the morning.
+
 ``` bash
 #!/bin/bash
 # /usr/local/bin/snapclient-minidisp.sh
@@ -16,6 +18,26 @@ elif cat /proc/asound/card0/pcm0p/info | grep -q "subdevices_avail: 1" && minids
         minidsp source toslink
 fi
 ```
+
+attempt 2
+``` bash
+#!/bin/bash
+state_file="/tmp/minidsp_last_state"
+
+status=$(grep -q RUNNING /proc/asound/card0/pcm0p/sub0/status && echo "RUNNING" || echo "CLOSED")
+desired=$([ "$status" = "RUNNING" ] && echo "usb" || echo "toslink")
+
+last=$(cat "$state_file" 2>/dev/null || echo "unknown")
+
+if [ "$desired" != "$last" ]; then
+    minidsp source "$desired"
+    echo "$desired" > "$state_file"
+fi
+
+sleep 1   # small debounce
+```
+
+
 
 ``` bash
 sudo  chmod +x /usr/local/bin/snapclient-minidsp.sh
