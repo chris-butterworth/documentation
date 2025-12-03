@@ -62,7 +62,7 @@ attempt 3, with file lock to prevent rapid polling
 ```
 
 ``` bash
-sudo  chmod +x /usr/local/bin/snapclient-minidsp.sh
+sudo  chmod +x /usr/local/bin/minidspInput.sh
 sudo nano /etc/systemd/system/minidspInput.service
 ```
 
