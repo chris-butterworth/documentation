@@ -4,8 +4,8 @@
 sudo nano /usr/local/bin/minidspInput.sh
 ```
 
-old script, hit alsa/minidsp too often and cause the usb device to get overloaded overnight, and needed powercycling in the morning.
-
+old script, hit alsa/minidsp too often and cause the usb device to get overloaded overnight, and needed power cycling in the morning.
+apparently pcm0p/info will probe the actual device, where as pcm0p/sub0/status is just a status file
 ``` bash
 #!/bin/bash
 # /usr/local/bin/snapclient-minidisp.sh
@@ -22,21 +22,29 @@ fi
 attempt 2
 ``` bash
 #!/bin/bash
-state_file="/tmp/minidsp_last_state"
+(
+  flock -n 200 || exit 0
 
-status=$(grep -q RUNNING /proc/asound/card0/pcm0p/sub0/status && echo "RUNNING" || echo "CLOSED")
-desired=$([ "$status" = "RUNNING" ] && echo "usb" || echo "toslink")
+  state_file="/tmp/minidsp_last_state"
+  status=$(cat /proc/asound/card0/pcm0p/sub0/status 2>/dev/null)
 
-last=$(cat "$state_file" 2>/dev/null || echo "unknown")
+  if [ "$status" = "RUNNING" ]; then
+      desired="usb"
+  else
+      desired="toslink"
+  fi
 
-if [ "$desired" != "$last" ]; then
-    minidsp source "$desired"
-    echo "$desired" > "$state_file"
-fi
+  last=$(cat "$state_file" 2>/dev/null || echo "unknown")
 
-sleep 1   # small debounce
+  if [ "$desired" != "$last" ]; then
+      minidsp source "$desired"
+      echo "$desired" > "$state_file"
+      sleep 1
+  fi
+
+) 200>/tmp/minidsp.lock
+
 ```
-
 
 
 ``` bash
