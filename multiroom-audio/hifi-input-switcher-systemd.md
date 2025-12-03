@@ -22,6 +22,25 @@ fi
 attempt 2
 ``` bash
 #!/bin/bash
+
+state_file="/tmp/minidsp_last_state"
+
+status=$(grep -q RUNNING /proc/asound/card0/pcm0p/sub0/status && echo "RUNNING" || echo "CLOSED")
+desired=$([ "$status" = "RUNNING" ] && echo "usb" || echo "toslink")
+
+last=$(cat "$state_file" 2>/dev/null || echo "unknown")
+
+if [ "$desired" != "$last" ]; then
+    minidsp source "$desired"
+    echo "$desired" > "$state_file"
+fi
+
+sleep 1   # small debounce
+```
+
+attempt 3, with file lock to prevent rapid polling, and status change stored in tmp file to avoid polling usb device
+``` bash
+#!/bin/bash
 (
   flock -n 200 || exit 0
 
@@ -43,9 +62,7 @@ attempt 2
   fi
 
 ) 200>/tmp/minidsp.lock
-
 ```
-
 
 ``` bash
 sudo  chmod +x /usr/local/bin/snapclient-minidsp.sh
