@@ -19,7 +19,7 @@ elif cat /proc/asound/card0/pcm0p/info | grep -q "subdevices_avail: 1" && minids
 fi
 ```
 
-attempt 2
+attempt 2  with status change stored in tmp file to avoid polling usb device
 ``` bash
 #!/bin/bash
 
@@ -38,28 +38,25 @@ fi
 sleep 1   # small debounce
 ```
 
-attempt 3, with file lock to prevent rapid polling, and status change stored in tmp file to avoid polling usb device
+attempt 3, with file lock to prevent rapid polling
 ``` bash
 #!/bin/bash
 (
   flock -n 200 || exit 0
 
   state_file="/tmp/minidsp_last_state"
-  status=$(cat /proc/asound/card0/pcm0p/sub0/status 2>/dev/null)
 
-  if [ "$status" = "RUNNING" ]; then
-      desired="usb"
-  else
-      desired="toslink"
-  fi
+  status=$(grep -q RUNNING /proc/asound/card0/pcm0p/sub0/status && echo "RUNNING" || echo "CLOSED")
+  desired=$([ "$status" = "RUNNING" ] && echo "usb" || echo "toslink")
 
   last=$(cat "$state_file" 2>/dev/null || echo "unknown")
 
   if [ "$desired" != "$last" ]; then
       minidsp source "$desired"
       echo "$desired" > "$state_file"
-      sleep 1
   fi
+
+  sleep 1   # small debounce
 
 ) 200>/tmp/minidsp.lock
 ```
