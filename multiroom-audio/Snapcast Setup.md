@@ -47,9 +47,11 @@ To update librespot
 cd ~/librespot
 git fetch origin
 git reset --hard origin/master
+git pull
 cargo build --release
+sudo systemctl stop snapserver
 sudo cp target/release/librespot /usr/local/bin/librespot
-systemctl restart snapserver
+sudo systemctl start snapserver
 ```
 
 ### PulseAudio Systemd User Service
