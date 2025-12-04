@@ -50,10 +50,13 @@ attempt 3, with file lock to prevent rapid polling
   desired=$([ "$status" = "RUNNING" ] && echo "usb" || echo "toslink")
 
   last=$(cat "$state_file" 2>/dev/null || echo "unknown")
+  
+  echo "$(date) status=$status desired=$desired last=$last" >> /var/log/minidsp-switch.log
 
   if [ "$desired" != "$last" ]; then
       minidsp source "$desired"
       echo "$desired" > "$state_file"
+      echo "$(date) switching input from $last to $desired" >> /var/log/minidsp-switch.log
   fi
 
   sleep 1   # small debounce
