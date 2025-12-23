@@ -19,7 +19,9 @@ steam also requires the ability to install 32bit software
 ## Todo.txt-cli
 ``` bash
 sudo apt install todotxt-cli
-alias t="
+alias t="todo-txt"
+sudo nano /etc/todo-txt/config
+# change directory to correct one
 ```
 
 ## Other apps
