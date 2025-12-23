@@ -16,6 +16,12 @@ steam also requires the ability to install 32bit software
 
 `sudo apt install steam-installer`
 
+## Todo.txt-cli
+``` bash
+sudo apt install todotxt-cli
+alias t="
+```
+
 ## Other apps
 - [sleek](https://github.com/ransome1/sleek/releases) (todo.txt)
 - obs studio

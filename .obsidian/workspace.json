@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "multiroom-audio/Snapcast Setup.md",
+                "file": "tools-and-configs/general-linux-setup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Snapcast Setup"
+              "title": "general-linux-setup"
             }
           }
         ],
@@ -200,8 +200,9 @@
   },
   "active": "bc4ae94213db9ea7",
   "lastOpenFiles": [
-    "multiroom-audio/hifi-input-switcher-systemd.md",
+    "restore-scripts/linux-mint-desktop.md",
     "multiroom-audio/Snapcast Setup.md",
+    "multiroom-audio/hifi-input-switcher-systemd.md",
     "multiroom-audio/multiroom-audio.png",
     "tools-and-configs/repo-auto-sync.md",
     "tools-and-configs",
@@ -214,7 +215,6 @@
     "README.md",
     "restore-scripts/docker-volume-restore.md",
     "restore-scripts/debian-kde-surface.md",
-    "restore-scripts/linux-mint-desktop.md",
     "restore-scripts",
     "Snapcast Setup.md",
     "multiroom-audio/multiroom-audio.drawio",
